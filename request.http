@@ -1,0 +1,345 @@
+### Variables
+@host = http://localhost:3000
+@baseUrl = {{host}}/api/v1
+
+### Health Check
+GET {{baseUrl}}/health
+
+###
+
+### 1. Get All Plants (Default)
+GET {{baseUrl}}/plants
+
+###
+
+### 2. Get All Plants with Pagination
+GET {{baseUrl}}/plants?page=1&limit=5
+
+###
+
+### 3. Filter by Size Category
+GET {{baseUrl}}/plants?size_category=meja
+
+###
+
+### 4. Filter by Light Intensity
+GET {{baseUrl}}/plants?light_intensity=sedang
+
+###
+
+### 5. Filter by Price Category
+GET {{baseUrl}}/plants?price_category=standard
+
+###
+
+### 6. Filter by Flowers
+GET {{baseUrl}}/plants?has_flowers=false
+
+###
+
+### 7. Filter by Placement
+GET {{baseUrl}}/plants?placement=meja_kerja
+
+###
+
+### 8. Filter by Price Range
+GET {{baseUrl}}/plants?min_price=50000&max_price=200000
+
+###
+
+### 9. Multiple Filters Combined
+GET {{baseUrl}}/plants?size_category=meja&light_intensity=sedang&price_category=standard&page=1&limit=10
+
+###
+
+### 10. Search Plants
+GET {{baseUrl}}/plants/search?q=monstera
+
+###
+
+### 11. Search with Pagination
+GET {{baseUrl}}/plants/search?q=plant&page=1&limit=5
+
+###
+
+### 12. Get Plant by ID
+GET {{baseUrl}}/plants/1
+
+###
+
+### 13. Get Plant by ID (Non-existent)
+GET {{baseUrl}}/plants/999
+
+###
+
+### 14. Get Available Filters
+GET {{baseUrl}}/plants/filters
+
+###
+
+### 15. Get Recommendations by Placement
+GET {{baseUrl}}/plants/recommendations?placement=meja_kerja
+
+###
+
+### 16. Get Recommendations by Light Intensity
+GET {{baseUrl}}/plants/recommendations?light=rendah
+
+###
+
+### 17. Get Recommendations by Both Criteria
+GET {{baseUrl}}/plants/recommendations?placement=toilet&light=rendah
+
+###
+
+### 18. Create New Plant
+POST {{baseUrl}}/plants
+Content-Type: application/json
+
+{
+    "name": "Fiddle Leaf Fig",
+    "description": "Tanaman hias dengan daun besar dan indah, cocok untuk ruangan dengan cahaya terang",
+    "price": 200000,
+    "size_category": "sedang",
+    "size_dimensions": "20 x 30 cm",
+    "light_intensity": "tinggi",
+    "price_category": "premium",
+    "has_flowers": false,
+    "indoor_durability": "sedang",
+    "stock_quantity": 15,
+    "image_url": "https://example.com/images/fiddle-leaf-fig.jpg",
+    "placements": ["ruang_tamu", "balkon"]
+}
+
+###
+
+### 19. Create Plant with All Placements
+POST {{baseUrl}}/plants
+Content-Type: application/json
+
+{
+    "name": "ZZ Plant",
+    "description": "Tanaman yang sangat mudah dirawat dan toleran terhadap kondisi cahaya rendah",
+    "price": 85000,
+    "size_category": "meja",
+    "size_dimensions": "15 x 20 cm",
+    "light_intensity": "rendah",
+    "price_category": "ekonomis",
+    "has_flowers": false,
+    "indoor_durability": "tinggi",
+    "stock_quantity": 40,
+    "image_url": "https://example.com/images/zz-plant.jpg",
+    "placements": ["meja_kerja", "meja_resepsionis", "toilet", "kamar_tidur"]
+}
+
+###
+
+### 20. Create Flowering Plant
+POST {{baseUrl}}/plants
+Content-Type: application/json
+
+{
+    "name": "African Violet",
+    "description": "Tanaman berbunga ungu yang cantik dan mudah dirawat di dalam ruangan",
+    "price": 65000,
+    "size_category": "meja",
+    "size_dimensions": "8 x 10 cm",
+    "light_intensity": "sedang",
+    "price_category": "ekonomis",
+    "has_flowers": true,
+    "indoor_durability": "sedang",
+    "stock_quantity": 25,
+    "image_url": "https://example.com/images/african-violet.jpg",
+    "placements": ["meja_kerja", "meja_resepsionis", "ruang_tamu"]
+}
+
+###
+
+### 21. Update Plant (Full Update)
+PUT {{baseUrl}}/plants/1
+Content-Type: application/json
+
+{
+    "name": "Monstera Deliciosa (Updated)",
+    "description": "Tanaman hias populer dengan daun berlubang unik yang mudah dirawat - UPDATED",
+    "price": 175000,
+    "size_category": "sedang",
+    "size_dimensions": "15 x 25 cm",
+    "light_intensity": "sedang",
+    "price_category": "premium",
+    "has_flowers": false,
+    "indoor_durability": "tinggi",
+    "stock_quantity": 30,
+    "image_url": "https://example.com/images/monstera-updated.jpg",
+    "placements": ["meja_kerja", "ruang_tamu", "balkon", "dapur"]
+}
+
+###
+
+### 22. Update Plant (Partial Update - Price Only)
+PUT {{baseUrl}}/plants/2
+Content-Type: application/json
+
+{
+    "price": 90000,
+    "stock_quantity": 45
+}
+
+###
+
+### 23. Update Plant (Placements Only)
+PUT {{baseUrl}}/plants/3
+Content-Type: application/json
+
+{
+    "placements": ["ruang_tamu", "meja_resepsionis", "balkon"]
+}
+
+###
+
+### 24. Delete Plant
+DELETE {{baseUrl}}/plants/1
+
+###
+
+### 25. Delete Non-existent Plant
+DELETE {{baseUrl}}/plants/999
+
+###
+
+### 26. Test Validation Error (Missing Required Fields)
+POST {{baseUrl}}/plants
+Content-Type: application/json
+
+{
+    "description": "Plant without name and price"
+}
+
+###
+
+### 27. Test Validation Error (Invalid Enum Values)
+POST {{baseUrl}}/plants
+Content-Type: application/json
+
+{
+    "name": "Invalid Plant",
+    "price": 50000,
+    "size_category": "invalid_size",
+    "light_intensity": "invalid_light",
+    "price_category": "invalid_price",
+    "indoor_durability": "invalid_durability",
+    "placements": ["invalid_placement"]
+}
+
+###
+
+### 28. Test Validation Error (Invalid Price)
+POST {{baseUrl}}/plants
+Content-Type: application/json
+
+{
+    "name": "Negative Price Plant",
+    "price": -50000,
+    "size_category": "meja",
+    "light_intensity": "sedang",
+    "price_category": "standard",
+    "indoor_durability": "tinggi",
+    "placements": ["meja_kerja"]
+}
+
+###
+
+### 29. Test Pagination Limits
+GET {{baseUrl}}/plants?page=1&limit=101
+
+###
+
+### 30. Test Search with Empty Query
+GET {{baseUrl}}/plants/search?q=
+
+###
+
+### 31. Test Complex Search
+GET {{baseUrl}}/plants/search?q=tanaman hias
+
+###
+
+### 32. Test Filter Combinations (No Results Expected)
+GET {{baseUrl}}/plants?size_category=besar&light_intensity=rendah&has_flowers=true&min_price=500000
+
+###
+
+### 33. Get All Plants After Modifications
+GET {{baseUrl}}/plants?page=1&limit=20
+
+###
+
+### 34. Test Non-existent Endpoint
+GET {{baseUrl}}/plants/invalid-endpoint
+
+###
+
+### 35. Test Invalid HTTP Method
+PATCH {{baseUrl}}/plants
+
+###
+
+### 36. Test Large Plant Creation (Edge Case)
+POST {{baseUrl}}/plants
+Content-Type: application/json
+
+{
+    "name": "Ficus Lyrata Premium Indoor Plant with Very Long Name for Testing Purposes",
+    "description": "This is a very long description to test the text field limits and ensure that our API can handle longer text inputs without any issues. This plant is perfect for large indoor spaces and requires specific care instructions that include proper lighting, watering schedules, and humidity control.",
+    "price": 450000,
+    "size_category": "besar",
+    "size_dimensions": "50 x 70 cm",
+    "light_intensity": "tinggi",
+    "price_category": "premium",
+    "has_flowers": false,
+    "indoor_durability": "sedang",
+    "stock_quantity": 5,
+    "image_url": "https://example.com/images/large-ficus-lyrata-premium.jpg",
+    "placements": ["ruang_tamu", "balkon", "dapur"]
+}
+
+###
+
+### 37. Test Rate Limiting (Run multiple times quickly)
+GET {{baseUrl}}/plants
+
+###
+
+### 38. Test Update Non-existent Plant
+PUT {{baseUrl}}/plants/999
+Content-Type: application/json
+
+{
+    "name": "Non-existent Plant Update",
+    "price": 100000
+}
+
+###
+
+### 39. Test All Placement Types
+POST {{baseUrl}}/plants
+Content-Type: application/json
+
+{
+    "name": "Universal Plant",
+    "description": "Tanaman yang cocok ditempatkan di mana saja",
+    "price": 120000,
+    "size_category": "meja",
+    "size_dimensions": "12 x 15 cm",
+    "light_intensity": "sedang",
+    "price_category": "standard",
+    "has_flowers": false,
+    "indoor_durability": "tinggi",
+    "stock_quantity": 20,
+    "placements": ["meja_kerja", "meja_resepsionis", "pagar", "toilet", "ruang_tamu", "kamar_tidur", "dapur", "balkon"]
+}
+
+###
+
+### 40. Final Health Check
+GET {{baseUrl}}/health
