@@ -2,10 +2,15 @@
   "name": "flora-shop-api",
   "version": "1.0.0",
   "description": "REST API for Flora Shop - Plant Store Management",
-  "main": "src/server.js",
+  "main": "api/index.js",
+  "engines": {
+    "node": ">=18.x"
+  },
   "scripts": {
     "start": "node src/server.js",
     "dev": "nodemon src/server.js",
+    "build": "echo 'Build completed'",
+    "vercel-build": "echo 'Vercel build completed'",
     "init-db": "node src/database/init.js",
     "seed": "node src/database/seed.js"
   },
