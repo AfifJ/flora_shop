@@ -8,7 +8,7 @@
     "dev": "nodemon src/server.js",
     "init-db": "node src/database/init.js",
     "seed": "node src/database/seed.js",
-    "build": "netlify deploy --prod",
+    "build": "echo \"Build for Netlify complete\"",
     "netlify-dev": "netlify dev"
   },
   "keywords": [
