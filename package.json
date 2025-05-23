@@ -2,17 +2,14 @@
   "name": "flora-shop-api",
   "version": "1.0.0",
   "description": "REST API for Flora Shop - Plant Store Management",
-  "main": "api/index.js",
-  "engines": {
-    "node": ">=18.x"
-  },
+  "main": "src/server.js",
   "scripts": {
     "start": "node src/server.js",
     "dev": "nodemon src/server.js",
-    "build": "echo 'Build completed'",
-    "vercel-build": "echo 'Vercel build completed'",
     "init-db": "node src/database/init.js",
-    "seed": "node src/database/seed.js"
+    "seed": "node src/database/seed.js",
+    "build": "netlify deploy --prod",
+    "netlify-dev": "netlify dev"
   },
   "keywords": [
     "express",
@@ -30,10 +27,12 @@
     "helmet": "^7.1.0",
     "joi": "^17.11.0",
     "multer": "^1.4.5-lts.1",
+    "serverless-http": "^3.2.0",
     "sqlite3": "^5.1.6",
     "uuid": "^9.0.1"
   },
   "devDependencies": {
+    "netlify-cli": "^17.10.1",
     "nodemon": "^3.1.10"
   }
 }
