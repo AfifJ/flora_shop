@@ -1,41 +1,425 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Flora Shop API</title>
-  <style>
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', sans-serif;
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 2rem;
-      line-height: 1.6;
-    }
-    h1 {
-      color: #2e7d32;
-    }
-    .endpoint {
-      background-color: #f5f5f5;
-      padding: 1rem;
-      border-radius: 4px;
-      margin-bottom: 1rem;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flora Shop API Documentation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #2e7d32, #4caf50);
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+            margin-bottom: 30px;
+            border-radius: 10px;
+        }
+        
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        
+        .section {
+            background: white;
+            margin: 20px 0;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        h2 {
+            color: #2e7d32;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+            border-bottom: 2px solid #4caf50;
+            padding-bottom: 10px;
+        }
+        
+        h3 {
+            color: #1976d2;
+            margin: 20px 0 10px 0;
+            font-size: 1.3em;
+        }
+        
+        .endpoint {
+            background: #f8f9fa;
+            border-left: 4px solid #4caf50;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        
+        .method {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 0.9em;
+            margin-right: 10px;
+        }
+        
+        .get { background: #e3f2fd; color: #1976d2; }
+        .post { background: #e8f5e8; color: #2e7d32; }
+        .put { background: #fff3e0; color: #f57c00; }
+        .delete { background: #ffebee; color: #d32f2f; }
+        
+        code {
+            background: #f5f5f5;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+        }
+        
+        pre {
+            background: #263238;
+            color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin: 10px 0;
+        }
+        
+        .example {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .status-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #4caf50;
+            margin-right: 8px;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+        
+        .quick-start {
+            background: linear-gradient(135deg, #1976d2, #42a5f5);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        
+        .quick-start h3 {
+            color: white;
+            margin-top: 0;
+        }
+        
+        .filter-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .filter-item {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            border-left: 3px solid #4caf50;
+        }
+        
+        .nav-menu {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .nav-menu a {
+            color: #1976d2;
+            text-decoration: none;
+            margin-right: 20px;
+            font-weight: 500;
+        }
+        
+        .nav-menu a:hover {
+            text-decoration: underline;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+            border-top: 1px solid #ddd;
+            margin-top: 40px;
+        }
+    </style>
 </head>
 <body>
-  <h1>Flora Shop API</h1>
-  <p>Welcome to the Flora Shop API documentation. Below are the available endpoints:</p>
-  
-  <div class="endpoint">
-    <strong>GET /api</strong>
-    <p>Check if API is running</p>
-  </div>
-  
-  <!-- Add more endpoint documentation as needed -->
-  
-  <footer>
-    <p>Flora Shop API - Powered by Netlify Functions</p>
-  </footer>
+    <div class="container">
+        <header>
+            <h1>🌱 Flora Shop API</h1>
+            <p class="subtitle">REST API untuk Manajemen Toko Tanaman Hias</p>
+            <p><span class="status-indicator"></span>API Status: Active</p>
+        </header>
+
+        <nav class="nav-menu">
+            <a href="#quick-start">Quick Start</a>
+            <a href="#endpoints">Endpoints</a>
+            <a href="#filtering">Filtering</a>
+            <a href="#examples">Examples</a>
+            <a href="#errors">Error Handling</a>
+        </nav>
+
+        <section id="quick-start" class="quick-start">
+            <h3>🚀 Quick Start</h3>
+            <p>Base URL: <code id="base-url" style="color: black;"></code></p>
+            <p>Untuk memulai, coba endpoint berikut:</p>
+            <pre>curl <span id="health-url"></span></pre>
+        </section>
+
+        <section id="endpoints" class="section">
+            <h2>📋 API Endpoints</h2>
+
+            <div class="endpoint">
+                <div><span class="method get">GET</span><code>/plants</code> - Dapatkan semua tanaman</div>
+                <p>Mendukung pagination, filtering, dan search. Lihat bagian filtering untuk detail parameter.</p>
+            </div>
+
+            <div class="endpoint">
+                <div><span class="method get">GET</span><code>/plants/{id}</code> - Dapatkan tanaman berdasarkan ID</div>
+                <p>Contoh: <code>/plants/1</code></p>
+            </div>
+
+            <div class="endpoint">
+                <div><span class="method post">POST</span><code>/plants</code> - Buat tanaman baru</div>
+                <p>Kirim data tanaman dalam format JSON di request body.</p>
+            </div>
+
+            <div class="endpoint">
+                <div><span class="method put">PUT</span><code>/plants/{id}</code> - Update tanaman</div>
+                <p>Update sebagian atau seluruh data tanaman.</p>
+            </div>
+
+            <div class="endpoint">
+                <div><span class="method delete">DELETE</span><code>/plants/{id}</code> - Hapus tanaman</div>
+                <p>Soft delete - tanaman akan di-nonaktifkan, bukan dihapus permanent.</p>
+            </div>
+
+            <div class="endpoint">
+                <div><span class="method get">GET</span><code>/plants/filters</code> - Dapatkan opsi filter</div>
+                <p>Menampilkan semua kategori dan rentang harga yang tersedia.</p>
+            </div>
+
+            <div class="endpoint">
+                <div><span class="method get">GET</span><code>/plants/search?q={query}</code> - Cari tanaman</div>
+                <p>Cari berdasarkan nama atau deskripsi tanaman.</p>
+            </div>
+
+            <div class="endpoint">
+                <div><span class="method get">GET</span><code>/plants/recommendations</code> - Dapatkan rekomendasi</div>
+                <p>Parameter: <code>placement</code> dan/atau <code>light</code></p>
+            </div>
+        </section>
+
+        <section id="filtering" class="section">
+            <h2>🔍 Filter Parameters</h2>
+            <p>Gunakan parameter berikut untuk filtering pada endpoint <code>/plants</code>:</p>
+            
+            <div class="filter-grid">
+                <div class="filter-item">
+                    <h4>Pagination</h4>
+                    <code>page</code> - Halaman (default: 1)<br>
+                    <code>limit</code> - Item per halaman (max: 100)
+                </div>
+                
+                <div class="filter-item">
+                    <h4>Ukuran Tanaman</h4>
+                    <code>size_category</code><br>
+                    Values: meja, sedang, besar
+                </div>
+                
+                <div class="filter-item">
+                    <h4>Intensitas Cahaya</h4>
+                    <code>light_intensity</code><br>
+                    Values: rendah, sedang, tinggi
+                </div>
+                
+                <div class="filter-item">
+                    <h4>Kategori Harga</h4>
+                    <code>price_category</code><br>
+                    Values: ekonomis, standard, premium
+                </div>
+                
+                <div class="filter-item">
+                    <h4>Tanaman Berbunga</h4>
+                    <code>has_flowers</code><br>
+                    Values: true, false
+                </div>
+                
+                <div class="filter-item">
+                    <h4>Penempatan</h4>
+                    <code>placement</code><br>
+                    Values: meja_kerja, meja_resepsionis, pagar, toilet, ruang_tamu, kamar_tidur, dapur, balkon
+                </div>
+                
+                <div class="filter-item">
+                    <h4>Rentang Harga</h4>
+                    <code>min_price</code> - Harga minimum<br>
+                    <code>max_price</code> - Harga maximum
+                </div>
+                
+                <div class="filter-item">
+                    <h4>Pencarian</h4>
+                    <code>search</code><br>
+                    Cari di nama dan deskripsi
+                </div>
+            </div>
+        </section>
+
+        <section id="examples" class="section">
+            <h2>💡 Contoh Penggunaan</h2>
+
+            <h3>1. Dapatkan Semua Tanaman</h3>
+            <div class="example">
+                <pre>GET /api/v1/plants</pre>
+            </div>
+
+            <h3>2. Filter Tanaman Meja dengan Cahaya Sedang</h3>
+            <div class="example">
+                <pre>GET /api/v1/plants?size_category=meja&light_intensity=sedang</pre>
+            </div>
+
+            <h3>3. Cari Tanaman "Monstera"</h3>
+            <div class="example">
+                <pre>GET /api/v1/plants/search?q=monstera</pre>
+            </div>
+
+            <h3>4. Rekomendasi untuk Meja Kerja</h3>
+            <div class="example">
+                <pre>GET /api/v1/plants/recommendations?placement=meja_kerja</pre>
+            </div>
+
+            <h3>5. Buat Tanaman Baru</h3>
+            <div class="example">
+                <pre>POST /api/v1/plants
+Content-Type: application/json
+
+{
+    "name": "Snake Plant",
+    "description": "Tanaman yang sangat tahan banting",
+    "price": 75000,
+    "size_category": "meja",
+    "size_dimensions": "8 x 12 cm",
+    "light_intensity": "rendah",
+    "price_category": "ekonomis",
+    "has_flowers": false,
+    "indoor_durability": "tinggi",
+    "stock_quantity": 50,
+    "placements": ["meja_kerja", "toilet", "kamar_tidur"]
+}</pre>
+            </div>
+        </section>
+
+        <section id="errors" class="section">
+            <h2>⚠️ Error Handling</h2>
+            
+            <h3>Format Response Error</h3>
+            <div class="example">
+                <pre>{
+    "success": false,
+    "error": {
+        "code": "ERROR_CODE",
+        "message": "Human readable message",
+        "details": {}
+    }
+}</pre>
+            </div>
+
+            <h3>Common Error Codes:</h3>
+            <ul>
+                <li><code>VALIDATION_ERROR</code> - Data input tidak valid</li>
+                <li><code>PLANT_NOT_FOUND</code> - Tanaman tidak ditemukan</li>
+                <li><code>RATE_LIMIT_EXCEEDED</code> - Terlalu banyak request</li>
+                <li><code>INTERNAL_ERROR</code> - Error server internal</li>
+            </ul>
+        </section>
+
+        <section class="section">
+            <h2>📊 Rate Limiting</h2>
+            <p>API ini memiliki batasan rate limiting:</p>
+            <ul>
+                <li><strong>Public endpoints:</strong> 100 requests per menit</li>
+                <li>Rate limit headers disertakan dalam response</li>
+                <li>Jika limit terlampaui, akan mendapat HTTP 429</li>
+            </ul>
+        </section>
+
+        <section class="section">
+            <h2>🔧 Testing</h2>
+            <p>Untuk testing API, Anda dapat menggunakan:</p>
+            <ul>
+                <li><strong>curl</strong> - Command line tool</li>
+                <li><strong>Postman</strong> - GUI testing tool</li>
+                <li><strong>Thunder Client</strong> - VS Code extension</li>
+                <li><strong>REST Client</strong> - File request.http sudah disediakan</li>
+            </ul>
+        </section>
+
+        <footer>
+            <p>&copy; 2024 Flora Shop API. Built with Express.js & SQLite.</p>
+            <p>API Version: 1.0.0</p>
+        </footer>
+    </div>
+
+    <script>
+        // Update URLs based on current host
+        const currentHost = window.location.origin;
+        const baseUrl = currentHost + '/api/v1';
+        
+        document.getElementById('base-url').textContent = baseUrl;
+        document.getElementById('health-url').textContent = baseUrl + '/health';
+        
+        // Add smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
