@@ -33,16 +33,25 @@ async function setupApp(appInstance) {
     // This might be handled by Netlify's publish directory directly.
     // appInstance.use('/static', express.static(path.join(__dirname, 'public')));
 
-    // Documentation route at function root (e.g., /api/ -> /.netlify/functions/api/)
+    // Documentation route at function root
     appInstance.get('/', (req, res) => {
         res.sendFile(path.join(__dirname, 'views', 'documentation.html'));
     });
 
-    // API Routes - paths adjusted for Netlify's :splat behavior
-    // e.g., /api/v1/plants -> function receives /v1/plants
+    // API Routes - handle both /api/v1 and /v1 patterns
+    appInstance.use('/api/v1/plants', plantRoutes);
     appInstance.use('/v1/plants', plantRoutes);
 
-    // Health check endpoint - path adjusted
+    // Health check endpoint - handle both patterns
+    appInstance.get('/api/v1/health', (req, res) => {
+        res.json({
+            success: true,
+            message: 'Flora Shop API is running',
+            timestamp: new Date().toISOString(),
+            version: '1.0.0'
+        });
+    });
+    
     appInstance.get('/v1/health', (req, res) => {
         res.json({
             success: true,
