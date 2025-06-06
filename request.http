@@ -1,22 +1,10 @@
-### Variables - Local Development
-@host_local = http://localhost:3000
-@baseUrl_local = {{host_local}}/api/v1
-
-### Variables - Production (Update with your Vercel URL)
-@host_prod = https://your-app-name.vercel.app
-@baseUrl_prod = {{host_prod}}/api/v1
-
-### Variables - Current (Change this to switch environments)
-@host = {{host_local}}
-@baseUrl = {{host}}/api/v1
+### Variables - Current Environment
+@host = localhost:3000  
+# Change to your Vercel URL when deploying
+@baseUrl = {{host}}/v1
 
 ### Health Check
 GET {{baseUrl}}/health
-
-###
-
-### Health Check Production
-GET {{baseUrl_prod}}/health
 
 ###
 
